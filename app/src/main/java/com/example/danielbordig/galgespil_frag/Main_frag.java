@@ -15,7 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main_frag extends Fragment implements View.OnClickListener {
-
+    // TODO: Rename parameter arguments, choose names that match
+    // the mainFragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
@@ -92,10 +93,6 @@ public class Main_frag extends Fragment implements View.OnClickListener {
             String gættetBogstav = bogstav.getText().toString().toLowerCase();
 
             if (gættetBogstav.length() != 1) {
-//                Toast t = new Toast(getActivity());
-//                t.makeText(getActivity(), "Kun et bogstav af gangen", Toast.LENGTH_LONG);
-//                t.setGravity(Gravity.CENTER, 0, 0);
-//                t.show();
                 Toast.makeText(getActivity(), "Kun et bogstav af gangen", Toast.LENGTH_LONG).show();
                 bogstav.setText("");
                 return;
