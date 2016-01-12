@@ -23,8 +23,9 @@ public class Main_frag extends Fragment implements View.OnClickListener {
     private String mParam2;
 
     public static Galgelogik galgeMain;
+    public static int points, finalScore;
     TextView syndligtOrd, brugteBogstaver, besked, gætord;
-    EditText bogstav;
+    EditText bogstav, score;
     Button ok, showWords;
     ImageView image;
     Fragment fragmentEnd = new GameEnd_frag();
@@ -75,6 +76,7 @@ public class Main_frag extends Fragment implements View.OnClickListener {
         besked = (TextView) root.findViewById(R.id.besked);
         gætord = (TextView) root.findViewById(R.id.gætOrd);
         bogstav = (EditText) root.findViewById(R.id.editText);
+        score = (EditText) root.findViewById(R.id.editText2);
         image = (ImageView) root.findViewById(R.id.imageView);
         ok = (Button) root.findViewById(R.id.button);
         showWords = (Button) root.findViewById(R.id.showWords);
@@ -90,6 +92,7 @@ public class Main_frag extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v==ok) {
+
             String gættetBogstav = bogstav.getText().toString().toLowerCase();
 
             if (gættetBogstav.length() != 1) {
@@ -99,8 +102,13 @@ public class Main_frag extends Fragment implements View.OnClickListener {
             }
 
             galgeMain.gætBogstav(gættetBogstav);
+            if(galgeMain.erSidsteBogstavKorrekt()){
+                points= points+1;
+                score.setText(String.valueOf(points));
+            }
             brugteBogstaver.setText("Brugte bogstaver:\n" + galgeMain.getBrugteBogstaver());
             syndligtOrd.setText(galgeMain.getSynligtOrd());
+
 
             if (!galgeMain.erSpilletSlut()) {
                 besked.setText(fejlBesked[galgeMain.getAntalForkerteBogstaver()]);
@@ -115,6 +123,8 @@ public class Main_frag extends Fragment implements View.OnClickListener {
         }
         if (galgeMain.erSpilletSlut()) {
            getFragmentManager().beginTransaction().replace(R.id.fragment_main, fragmentEnd).commit();
+            finalScore = points;
+            points = 0;
         }
 
     }
