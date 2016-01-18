@@ -94,14 +94,23 @@ public class Main_frag extends Fragment implements View.OnClickListener {
         if(v==ok) {
 
             String gættetBogstav = bogstav.getText().toString().toLowerCase();
+            String trykketBogstav = bogstav.getText().toString().toLowerCase();
 
             if (gættetBogstav.length() != 1) {
                 Toast.makeText(getActivity(), "Kun et bogstav af gangen", Toast.LENGTH_LONG).show();
                 bogstav.setText("");
                 return;
-            }
 
-            galgeMain.gætBogstav(gættetBogstav);
+            }else if(!trykketBogstav.matches("[a-zA-Z]+")) {
+                Toast.makeText(getActivity(), "Indtast kun Latin bogstaver og ikke tegn", Toast.LENGTH_LONG).show();
+                bogstav.setText("");
+
+            }
+            if(trykketBogstav.matches("[a-zA-Z]+")) {
+                galgeMain.gætBogstav(gættetBogstav);
+            }
+           // galgeMain.gætBogstav(gættetBogstav);
+
             if(galgeMain.erSidsteBogstavKorrekt()){
                 points= points+1;
                 score.setText(String.valueOf(points));
@@ -110,7 +119,7 @@ public class Main_frag extends Fragment implements View.OnClickListener {
             syndligtOrd.setText(galgeMain.getSynligtOrd());
 
 
-            if (!galgeMain.erSpilletSlut()) {
+            if (!galgeMain.erSpilletSlut() && trykketBogstav.matches("[a-zA-Z]+") ) {
                 besked.setText(fejlBesked[galgeMain.getAntalForkerteBogstaver()]);
                 if (!galgeMain.erSidsteBogstavKorrekt() && galgeMain.getAntalForkerteBogstaver() < 7) {
                     image.setImageResource(fejlBilleder[galgeMain.getAntalForkerteBogstaver() - 1]);
