@@ -1,10 +1,8 @@
 package com.example.danielbordig.galgespil_frag;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main_frag extends Fragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the mainFragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
 
     public static Galgelogik galgeMain;
     public static int points, finalScore;
@@ -51,19 +43,13 @@ public class Main_frag extends Fragment implements View.OnClickListener {
     };
 
     public Main_frag() {
-        // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        galgeMain = MainActivity_frag.galgeMainAct;
+        galgeMain = MainActivity.galgeMainAct;
         if (galgeMain.erSpilletSlut()) galgeMain = new Galgelogik();
-
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -76,8 +62,8 @@ public class Main_frag extends Fragment implements View.OnClickListener {
         besked = (TextView) root.findViewById(R.id.besked);
         gætord = (TextView) root.findViewById(R.id.gætOrd);
         bogstav = (EditText) root.findViewById(R.id.editText);
-        score = (EditText) root.findViewById(R.id.editText2);
-        image = (ImageView) root.findViewById(R.id.imageView);
+        score = (EditText) root.findViewById(R.id.textScore);
+        image = (ImageView) root.findViewById(R.id.galgeImage);
         ok = (Button) root.findViewById(R.id.button);
         showWords = (Button) root.findViewById(R.id.showWords);
 
@@ -109,7 +95,6 @@ public class Main_frag extends Fragment implements View.OnClickListener {
             if(trykketBogstav.matches("[a-zA-Z]+")) {
                 galgeMain.gætBogstav(gættetBogstav);
             }
-           // galgeMain.gætBogstav(gættetBogstav);
 
             if(galgeMain.erSidsteBogstavKorrekt()){
                 points= points+1;

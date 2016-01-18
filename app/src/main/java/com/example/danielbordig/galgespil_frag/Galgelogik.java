@@ -19,7 +19,6 @@ public class Galgelogik {
   private boolean spilletErVundet;
   private boolean spilletErTabt;
 
-
   public ArrayList<String> getBrugteBogstaver() { return brugteBogstaver; }
 
   public String getSynligtOrd() { return synligtOrd; }
@@ -40,7 +39,7 @@ public class Galgelogik {
 
 
   public Galgelogik() {
-    if (!MainActivity_frag.gotNewWords) {
+    if (!MainActivity.gotNewWords) {
       muligeOrd.add("bil");
       muligeOrd.add("computer");
       muligeOrd.add("programmering");
@@ -61,7 +60,6 @@ public class Galgelogik {
     ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
     opdaterSynligtOrd();
   }
-
 
   private void opdaterSynligtOrd() {
     synligtOrd = "";
@@ -100,18 +98,6 @@ public class Galgelogik {
     opdaterSynligtOrd();
   }
 
-  public void logStatus() {
-    System.out.println("---------- ");
-    System.out.println("- ordet (skult) = " + ordet);
-    System.out.println("- synligtOrd = " + synligtOrd);
-    System.out.println("- forkerteBogstaver = " + antalForkerteBogstaver);
-    System.out.println("- brugeBogstaver = " + brugteBogstaver);
-    if (spilletErTabt) System.out.println("- SPILLET ER TABT");
-    if (spilletErVundet) System.out.println("- SPILLET ER VUNDET");
-    System.out.println("---------- ");
-  }
-
-
   public static String hentUrl(String url) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
     StringBuilder sb = new StringBuilder();
@@ -138,7 +124,7 @@ public class Galgelogik {
     muligeOrd.addAll(new HashSet<String>(Arrays.asList(data.split(" "))));
 
     System.out.println("muligeOrd = " + muligeOrd);
-    MainActivity_frag.gotNewWords = true;
+    MainActivity.gotNewWords = true;
     nulstil();
   }
 }

@@ -27,7 +27,7 @@
     <ImageView
         android:layout_width="95dp"
         android:layout_height="110dp"
-        android:id="@+id/imageView"
+        android:id="@+id/galgeImage"
         android:src="@mipmap/galge"
         android:layout_below="@+id/besked"
         android:layout_alignParentStart="true"
@@ -54,7 +54,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/synligtOrd"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_alignTop="@+id/galgeImage"
         android:layout_toStartOf="@+id/button" />
 
     <TextView
@@ -63,7 +63,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/brugteBogstaver"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/galgeImage"
         android:layout_alignParentStart="true"
         android:layout_marginTop="31dp" />
 
@@ -78,7 +78,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/textScore"
         android:layout_below="@+id/brugteBogstaver"
         android:layout_alignRight="@+id/besked"
         android:layout_alignEnd="@+id/besked" />
@@ -89,7 +89,7 @@
         android:text="Score"
         android:id="@+id/textView"
         android:layout_alignTop="@+id/brugteBogstaver"
-        android:layout_toLeftOf="@+id/editText2"
-        android:layout_toStartOf="@+id/editText2" />
+        android:layout_toLeftOf="@+id/textScore"
+        android:layout_toStartOf="@+id/textScore" />
 
 </RelativeLayout>
