@@ -19,7 +19,7 @@ public class GameEnd_frag extends Fragment implements View.OnClickListener {
     TextView endMessage;
     TextView finalScore;
     ImageView endImage;
-    Button newWords, newGame, restartWords;
+    Button newWords,newGame, restartWords;
     private ArrayList<String> ordFraDr = new ArrayList<String>();
 
 
@@ -34,7 +34,7 @@ public class GameEnd_frag extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.activity_game_end_frag, container, false);
+        View root = inflater.inflate(R.layout.activity_game_end_frag_org, container, false);
 
         endMessage = (TextView) root.findViewById(R.id.endMessage);
         endImage = (ImageView) root.findViewById(R.id.imageView2);
@@ -49,7 +49,7 @@ public class GameEnd_frag extends Fragment implements View.OnClickListener {
         if (Main_keyboard_frag.galgeMain.erSpilletTabt()) {
             endMessage.setText("Du har tabt. Det rigtige ord var " + Main_keyboard_frag.galgeMain.getOrdet());
             endImage.setImageResource(R.mipmap.dead);
-            endImage.animate().scaleX((float) 0.1).scaleY((float) 0.1).rotation(90).setDuration(4000);
+            endImage.animate().rotation(360).setDuration(4000);
            // endImage.setVisibility(root.GONE);
         }
         if (Main_keyboard_frag.galgeMain.erSpilletVundet()){
@@ -68,7 +68,9 @@ public class GameEnd_frag extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if(v==restartWords) MainActivity.gotNewWords = false;
+        if(v==restartWords) {
+            MainActivity.gotNewWords = false;
+        }
         if(v==newWords){
             new AsyncTask(){
                 @Override
@@ -84,15 +86,11 @@ public class GameEnd_frag extends Fragment implements View.OnClickListener {
                 @Override
                 protected void onPostExecute(Object resultat) {
                     Toast.makeText(getActivity(),resultat+"",Toast.LENGTH_SHORT).show();
-                    //endMessage.setText("resultat: \n" + resultat);
                     ordFraDr.add(resultat.toString());
                 }
             }.execute();
         }
-        if(v==newGame) {
-            Fragment fragmentMain = new Main_frag();
-            getFragmentManager().beginTransaction().replace(R.id.fragment_main, fragmentMain).commit();
-        }
+        if(v==newGame)getFragmentManager().beginTransaction().replace(R.id.fragment_main, new Main_keyboard_frag()).commit();
     }
 
 }

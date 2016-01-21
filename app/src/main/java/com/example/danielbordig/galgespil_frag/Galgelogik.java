@@ -40,6 +40,7 @@ public class Galgelogik {
 
   public Galgelogik() {
     if (!MainActivity.gotNewWords) {
+      muligeOrd.clear();
       muligeOrd.add("bil");
       muligeOrd.add("computer");
       muligeOrd.add("programmering");
@@ -111,7 +112,6 @@ public class Galgelogik {
 
   public void hentOrdFraDr() throws Exception {
     String data = hentUrl("http://dr.dk");
-    //System.out.println("data = " + data);
 
     data = data.substring(data.indexOf("<body")). // fjern headere
             replaceAll("<.+?>", " ").toLowerCase(). // fjern tags
