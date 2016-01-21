@@ -28,24 +28,18 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nyt Spil"
-        android:id="@+id/newGame"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Genstart ord"
+        android:text="Originale ord"
         android:id="@+id/restartWords"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignRight="@+id/imageView2"
+        android:layout_alignEnd="@+id/imageView2" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nye ord"
         android:id="@+id/newWords"
-        android:layout_above="@+id/restartWords"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/endMessage"
+        android:layout_toStartOf="@+id/endMessage" />
 </RelativeLayout>
