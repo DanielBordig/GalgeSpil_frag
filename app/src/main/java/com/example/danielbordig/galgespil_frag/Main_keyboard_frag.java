@@ -34,6 +34,7 @@ public class Main_keyboard_frag extends Fragment implements View.OnClickListener
     private ShakeDetector shakeDetector;
 
     private int[] fejlBilleder = new int[]{
+            R.mipmap.galge,
             R.mipmap.forkert1,
             R.mipmap.forkert2,
             R.mipmap.forkert3,
@@ -54,13 +55,13 @@ public class Main_keyboard_frag extends Fragment implements View.OnClickListener
     };
 
     public Main_keyboard_frag() {
+        StartMenu.galge.nulstil();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        galgeMain = MainActivity.galgeMainAct;
-        if (galgeMain.erSpilletSlut()) galgeMain = new Galgelogik();
+        galgeMain = StartMenu.galge;
 
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -145,6 +146,7 @@ public class Main_keyboard_frag extends Fragment implements View.OnClickListener
 
         syndligtOrd.setText(galgeMain.getSynligtOrd());
         gætord.setText("Gæt ordet \nmed " + syndligtOrd.length() + " bogstaver.");
+        image.setImageResource(fejlBilleder[galgeMain.getAntalForkerteBogstaver()]);
 
         return root;
     }
@@ -168,7 +170,7 @@ public class Main_keyboard_frag extends Fragment implements View.OnClickListener
         if (!galgeMain.erSpilletSlut()) {
             besked.setText(fejlBesked[galgeMain.getAntalForkerteBogstaver()]);
             if (!galgeMain.erSidsteBogstavKorrekt() && galgeMain.getAntalForkerteBogstaver() < 7) {
-                image.setImageResource(fejlBilleder[galgeMain.getAntalForkerteBogstaver() - 1]);
+                image.setImageResource(fejlBilleder[galgeMain.getAntalForkerteBogstaver()]);
             }
         }
         if (galgeMain.erSpilletSlut()) {

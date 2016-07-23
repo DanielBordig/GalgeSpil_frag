@@ -10,14 +10,18 @@ import java.util.HashSet;
 import java.util.Random;
 
 public class Galgelogik {
-  private ArrayList<String> muligeOrd = new ArrayList<String>();
-  private String ordet;
+  public static ArrayList<String> muligeOrd = new ArrayList<String>();
+  public static Lists allLists = new Lists();
+  private ArrayList<String> aktivListe = new ArrayList<String>();
   private ArrayList<String> brugteBogstaver = new ArrayList<String>();
+  public static ArrayList<String> brugteOrd = new ArrayList<String>();
+  private String ordet;
   private String synligtOrd;
   private int antalForkerteBogstaver;
   private boolean sidsteBogstavVarKorrekt;
   private boolean spilletErVundet;
   private boolean spilletErTabt;
+  static int index;
 
   public ArrayList<String> getBrugteBogstaver() { return brugteBogstaver; }
 
@@ -39,18 +43,17 @@ public class Galgelogik {
 
 
   public Galgelogik() {
-    if (!MainActivity.gotNewWords) {
-      muligeOrd.clear();
-      muligeOrd.add("bil");
-      muligeOrd.add("computer");
-      muligeOrd.add("programmering");
-      muligeOrd.add("motorvej");
-      muligeOrd.add("busrute");
-      muligeOrd.add("gangsti");
-      muligeOrd.add("skovsnegl");
-      muligeOrd.add("solsort");
-    }
-    nulstil();
+
+  }
+
+  public void originaleOrd(){
+      brugteOrd.clear();
+      muligeOrd = allLists.getOprindeligeOrdList();
+  }
+
+  public void pokemonList(){
+      brugteOrd.clear();
+      muligeOrd = allLists.getPokemonList();
   }
 
   public void nulstil() {
@@ -58,7 +61,8 @@ public class Galgelogik {
     antalForkerteBogstaver = 0;
     spilletErVundet = false;
     spilletErTabt = false;
-    ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
+    index = new Random().nextInt(muligeOrd.size());
+    ordet = muligeOrd.get(index);
     opdaterSynligtOrd();
   }
 
@@ -124,7 +128,5 @@ public class Galgelogik {
     muligeOrd.addAll(new HashSet<String>(Arrays.asList(data.split(" "))));
 
     System.out.println("muligeOrd = " + muligeOrd);
-    MainActivity.gotNewWords = true;
-    nulstil();
   }
 }

@@ -14,7 +14,7 @@ public class AllWords_frag extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_words);
 
-        ArrayList<String> words = MainActivity.galgeMainAct.getMuligeOrd();
+        ArrayList<String> words = StartMenu.galge.getMuligeOrd();
 
         ListView lv = new ListView(this);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, words);

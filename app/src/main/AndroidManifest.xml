@@ -10,7 +10,7 @@
         android:label="g22 Galge Spil"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity"
+        <activity android:name=".StartMenu"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AllWords_frag" >
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Options"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

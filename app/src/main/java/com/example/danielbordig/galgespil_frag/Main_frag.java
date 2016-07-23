@@ -48,7 +48,7 @@ public class Main_frag extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        galgeMain = MainActivity.galgeMainAct;
+        galgeMain = StartMenu.galge;
         if (galgeMain.erSpilletSlut()) galgeMain = new Galgelogik();
     }
 

@@ -17,14 +17,15 @@ import java.util.ArrayList;
 public class GameEnd_frag extends Fragment implements View.OnClickListener {
 
     TextView endMessage;
-    TextView finalScore;
     ImageView endImage;
-    Button newWords,newGame, restartWords;
+    Button newWords,newGame;
     private ArrayList<String> ordFraDr = new ArrayList<String>();
+    private ArrayList<Integer> pokemonPic = new ArrayList<>();
+    private ArrayList<Integer> usedPokemonPic = new ArrayList<>();
 
 
     public GameEnd_frag() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -38,29 +39,39 @@ public class GameEnd_frag extends Fragment implements View.OnClickListener {
 
         endMessage = (TextView) root.findViewById(R.id.endMessage);
         endImage = (ImageView) root.findViewById(R.id.imageView2);
-        restartWords = (Button) root.findViewById(R.id.restartWords);
         newWords = (Button) root.findViewById(R.id.newWords);
         newGame = (Button) root.findViewById(R.id.newGame);
 
-        restartWords.setOnClickListener(this);
         newWords.setOnClickListener(this);
         newGame.setOnClickListener(this);
+
+        pokemonPic = Galgelogik.allLists.getPokemonPictures();
 
         if (Main_keyboard_frag.galgeMain.erSpilletTabt()) {
             endMessage.setText("Du har tabt. Det rigtige ord var " + Main_keyboard_frag.galgeMain.getOrdet());
             endImage.setImageResource(R.mipmap.dead);
-            endImage.animate().rotation(360).setDuration(4000);
-           // endImage.setVisibility(root.GONE);
         }
         if (Main_keyboard_frag.galgeMain.erSpilletVundet()){
             endMessage.setText("Du har vundet. Your final score is: " + Main_keyboard_frag.finalScore);
-            endImage.setImageResource(R.mipmap.thumb_up);
-            Animation animation;
-          //  animation = AnimationUtils.loadAnimation(root.getContext(), R.anim.anim_main);
-          // animation.setDuration(2000);
-            endImage.animate().rotation(360).setDuration(5000);
-          //  endImage.animate().translationX(400);
-            //finalScore.setText(Main_frag.finalScore);
+            if(Options.booleanPokemon){
+                endImage.setImageResource(pokemonPic.get(Galgelogik.index));
+                usedPokemonPic.add(pokemonPic.get(Galgelogik.index));
+                pokemonPic.remove(Galgelogik.index);
+                if(pokemonPic.size()==0){
+                    pokemonPic.addAll(usedPokemonPic);
+                    usedPokemonPic.clear();
+                }
+            }
+            else{
+                endImage.setImageResource(R.mipmap.thumb_up);
+            }
+            Galgelogik.brugteOrd.add(Galgelogik.muligeOrd.get(Galgelogik.index));
+            Galgelogik.muligeOrd.remove(Galgelogik.index);
+        }
+
+        if(Galgelogik.muligeOrd.size()==0){
+            Galgelogik.muligeOrd.addAll(Galgelogik.brugteOrd);
+            Galgelogik.brugteOrd.clear();
         }
 
         return root;
@@ -68,15 +79,12 @@ public class GameEnd_frag extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if(v==restartWords) {
-            MainActivity.gotNewWords = false;
-        }
         if(v==newWords){
             new AsyncTask(){
                 @Override
                 protected Object doInBackground(Object... arg0) {
                     try {
-                        MainActivity.galgeMainAct.hentOrdFraDr();
+                        StartMenu.galge.hentOrdFraDr();
                         return "Nye ord blev hentet korrekt fra serveren";
                     } catch (Exception e) {
                         e.printStackTrace();

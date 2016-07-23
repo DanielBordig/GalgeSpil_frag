@@ -36,16 +36,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Genstart ord"
-        android:id="@+id/restartWords"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Nye ord"
         android:id="@+id/newWords"
-        android:layout_above="@+id/restartWords"
+        android:layout_alignTop="@+id/newGame"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 </RelativeLayout>

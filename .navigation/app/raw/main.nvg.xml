@@ -30,7 +30,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "com.example.danielbordig.galgespil_frag.MainActivity_frag"/>
+        className = "com.example.danielbordig.galgespil_frag.MainActivity"/>
       <point      
         x = "436"      
         y = "128"/>
